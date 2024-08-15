@@ -41,3 +41,15 @@ questionnaire_questions table:
 questionnaire_junction table:
 
 `\copy questionnaire_junction from '/Users/brandenbasche/Desktop/development/bioverse-intake-questionnaire-assessment/assets/questionnaire_junction.csv' delimiter ',' CSV HEADER;`
+
+Create users table:
+
+```
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR NOT NULL UNIQUE, 
+    name VARCHAR NOT NULL,
+    password VARCHAR NOT NULL,
+    user_type VARCHAR(10) NOT NULL DEFAULT 'user' CHECK (user_type IN ('user', 'admin'))
+);
+```

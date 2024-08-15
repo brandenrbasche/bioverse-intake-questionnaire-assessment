@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model questionnaire_junction {
+  id                           Int                           @id @default(autoincrement())
+  question_id                  Int?
+  questionnaire_id             Int?
+  priority                     Int?
+  questionnaire_questions      questionnaire_questions?      @relation(fields: [question_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  questionnaire_questionnaires questionnaire_questionnaires? @relation(fields: [questionnaire_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model questionnaire_questionnaires {
+  id                     Int                      @id @default(autoincrement())
+  name                   String?                  @db.VarChar
+  questionnaire_junction questionnaire_junction[]
+}
+
+model questionnaire_questions {
+  id                     Int                      @id @default(autoincrement())
+  question               Json?
+  questionnaire_junction questionnaire_junction[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model users {
+  id        Int    @id @unique @default(autoincrement())
+  name      String @db.VarChar
+  password  String @db.VarChar
+  user_type String @default("user") @db.VarChar(10)
+  email     String @db.VarChar @unique
+}
