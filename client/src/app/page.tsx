@@ -1,18 +1,11 @@
-import {getServerSession} from "next-auth";
-import {authOptions} from "@/app/api/auth/[...nextauth]/route";
-import {User} from "@/app/user";
-import {LogoutButton} from "@/app/auth";
+import QuestionnaireSelection from "@/app/questionnaires/page";
 
 export default async function Home() {
-    const session = await getServerSession(authOptions);
-
     return (
-      <main>
-          <LogoutButton />
-          <h1>Server session</h1>
-          <pre>{JSON.stringify(session)}</pre>
-          <h1>Client call</h1>
-          <User />
+      <main className='p-5'>
+          <div>
+              <QuestionnaireSelection />
+          </div>
       </main>
   );
 }

@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply text-2xl font-bold mb-3;
+  }
+
+  button {
+    @apply text-lg mb-1 transition duration-300 hover:underline;
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -14,6 +24,10 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+}
+
+h1 {
+  font-size: x-large;
 }
 
 /*body {*/

@@ -1,9 +1,27 @@
-import React from 'react';
+import { PrismaClient } from '@prisma/client';
+import Link from 'next/link';
 
-const QuestionnaireSelection = () => {
+// const prisma = new PrismaClient();
+
+const QuestionnaireSelection = async () => {
+    const prisma = new PrismaClient();
+    const questionnaireList = await prisma.questionnaire_questionnaires.findMany();
+
     return (
         <div>
-            <p>questionnaire selection works!</p>
+            <h1>Please select a questionnaire:</h1>
+            <ol>
+                {
+                    questionnaireList.map((questionnaire) => (
+                        <li key={questionnaire.id} className='w-full'>
+                            <Link href={`/questionnaires/${questionnaire.id}`}>
+                                <button>{questionnaire.name?.charAt(0).toUpperCase() + questionnaire.name?.slice(1)}</button>
+                            </Link>
+                        </li>
+                    ))
+                }
+            </ol>
+            {/*<QuestionnaireSelection questionnaireList={questionnaireList} />*/}
         </div>
     );
 };

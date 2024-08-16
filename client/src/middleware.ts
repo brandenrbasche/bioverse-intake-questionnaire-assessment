@@ -1,15 +1,5 @@
-// import { NextRequest, NextResponse } from "next/server";
-// import { getToken } from "next-auth/jwt";
-
-// const secret = process.env.NEXTAUTH_SECRET;
-
-// export async function middleware(req: NextRequest) {
-//     // Check if user is authenticated:
-//     const token = await getToken({ req, secret }); // get token (if available)
-//
-//     if (token) {
-//         return NextResponse.redirect(new URL('/questionnaires', req.url));
-//     }
-// }
+export const config = {
+    matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'] // Exclude API routes and common static assets
+}
 
 export { default } from "next-auth/middleware";
