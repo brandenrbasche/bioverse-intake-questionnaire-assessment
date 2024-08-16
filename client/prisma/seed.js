@@ -17,6 +17,17 @@ async function main() {
     // })
     //
     // console.log({ user });
+
+    const adminUser = await prisma.users.create({
+        data: {
+            name: 'Branden',
+            email: 'branden-admin@test.com',
+            password,
+            user_type: 'admin'
+        }
+    })
+
+    console.log({ adminUser });
 }
 
 main()

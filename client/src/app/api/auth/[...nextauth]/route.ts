@@ -1,4 +1,4 @@
-import NextAuth, {type NextAuthOptions, User} from 'next-auth';
+import NextAuth, {type NextAuthOptions } from 'next-auth';
 import CredentialsProvider from "next-auth/providers/credentials";
 import {prisma} from "../../../../../lib/prisma";
 import {compare} from "bcrypt";
@@ -23,16 +23,11 @@ export const authOptions: NextAuthOptions = {
                     return null; // this tells Auth.js that there was in INVALID credentials set (the credentials simply weren't correct)
                 }
 
-                console.log('EMAIL: ', credentials.email)
-                console.log('PASSWORD: ', credentials.password)
-
                 const user = await prisma.users.findUnique({
                     where: {
                         email: credentials.email
                     }
                 });
-
-                console.log('logging user: ', user);
 
                 // If a user isn't found, return null
                 if (!user) {
@@ -57,7 +52,6 @@ export const authOptions: NextAuthOptions = {
     callbacks: {
         // handles session object passed around/used when fetching a session
         session: ({ session, token }) => {
-            console.log('Session Callback: ', {session, token})
             return {
                 ...session,
                 user: {

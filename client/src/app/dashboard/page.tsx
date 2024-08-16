@@ -1,19 +1,20 @@
-import {getServerSession} from "next-auth";
+import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import {redirect} from "next/navigation";
-import {NextResponse} from "next/server";
+import { redirect } from "next/navigation";
 
 export default async function Dashboard() {
+    const session = await getServerSession(authOptions);
+    const isAdmin = session?.user.user_type === 'admin';
 
-    const session = await getServerSession(authOptions)
+    console.log('logging active session: ', session?.user);
 
-    if (!session) {
-        return new NextResponse(JSON.stringify({ error: 'unauthorized'}), {
-            status: 401
-        })
+    if (isAdmin) {
+        console.log('User is an admin.');
+        return (
+            <p>admin panel works!</p>
+        )
+    } else {
+        console.log('User is not an admin. Redirecting to questionnaire selection page.');
+        return redirect('/questionnaires');
     }
-
-    return (
-        <p>admin panel works!</p>
-    )
 }
