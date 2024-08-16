@@ -18,7 +18,7 @@ model questionnaire_junction {
 
 model questionnaire_questionnaires {
   id                     Int                      @id @default(autoincrement())
-  name                   String?                  @db.VarChar
+  name                   String?                  @db.VarChar @unique
   questionnaire_junction questionnaire_junction[]
 }
 

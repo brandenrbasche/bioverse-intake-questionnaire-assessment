@@ -14,7 +14,7 @@ export default async function Dashboard() {
             <p>admin panel works!</p>
         )
     } else {
-        console.log('User is not an admin. Redirecting to questionnaire selection page.');
+        console.log('User is not an admin. Redirecting to intake selection page.');
         return redirect('/questionnaires');
     }
 }

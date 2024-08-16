@@ -5,7 +5,7 @@ import {LogoutButton} from "@/app/auth";
 export const User = async () => {
     const session = await getServerSession(authOptions);
     const userName = session?.user?.name;
-    console.log('client session: ', session)
+    // console.log('client session: ', session)
     return (
         <div className='flex items-center justify-between mb-5'>
             <h3>Welcome, {userName}.</h3>
