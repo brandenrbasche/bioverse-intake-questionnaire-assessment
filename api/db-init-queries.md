@@ -53,3 +53,15 @@ CREATE TABLE users (
     user_type VARCHAR(10) NOT NULL DEFAULT 'user' CHECK (user_type IN ('user', 'admin'))
 );
 ```
+
+Create user_responses table:
+```
+CREATE TABLE user_responses (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  questionnaire_id INTEGER REFERENCES questionnaire_questionnaires(id),
+  question_id INTEGER REFERENCES questionnaire_questions(id),
+  response JSONB,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+);
+```

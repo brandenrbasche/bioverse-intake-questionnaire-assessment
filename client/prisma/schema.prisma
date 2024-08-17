@@ -18,21 +18,33 @@ model questionnaire_junction {
 
 model questionnaire_questionnaires {
   id                     Int                      @id @default(autoincrement())
-  name                   String?                  @db.VarChar @unique
+  name                   String?                  @unique @db.VarChar
   questionnaire_junction questionnaire_junction[]
+  user_responses         user_responses[]
 }
 
 model questionnaire_questions {
   id                     Int                      @id @default(autoincrement())
   question               Json?
   questionnaire_junction questionnaire_junction[]
+  user_responses         user_responses[]
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model users {
-  id        Int    @id @unique @default(autoincrement())
-  name      String @db.VarChar
-  password  String @db.VarChar
-  user_type String @default("user") @db.VarChar(10)
-  email     String @db.VarChar @unique
+  id             Int              @id @unique @default(autoincrement())
+  name           String           @db.VarChar
+  password       String           @db.VarChar
+  user_type      String           @default("user") @db.VarChar(10)
+  email          String           @unique @db.VarChar
+  user_responses user_responses[]
+}
+
+model user_responses {
+  id                           Int                          @id @unique @default(autoincrement())
+  users                        users                        @relation(fields: [user_id], references: [id])
+  user_id                      Int
+  questionnaire_questionnaires questionnaire_questionnaires @relation(fields: [questionnaire_id], references: [id])
+  questionnaire_id             Int
+  response                     Json
+  created_at                   DateTime                     @default(now())
 }
