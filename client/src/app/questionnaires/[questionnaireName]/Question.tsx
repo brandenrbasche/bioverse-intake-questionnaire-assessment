@@ -2,6 +2,7 @@ import React from 'react';
 import {QuestionProps, McqProps, TextInputProps} from "../../../../types/types";
 
 const Question = ({ question, questionNumber, questionId, handleFormChange }: QuestionProps) => {
+    // @ts-ignore
     return (
         <div>
             <h3><span className='font-medium'>{questionNumber}.</span> {question.question}</h3>
