@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {QuestionProps, McqProps, TextInputProps, UserResponse} from "../../../../types/types";
+import React from 'react';
+import {QuestionProps, McqProps, TextInputProps} from "../../../../types/types";
 
 const Question = ({ question, questionNumber, questionId, handleFormChange }: QuestionProps) => {
     return (

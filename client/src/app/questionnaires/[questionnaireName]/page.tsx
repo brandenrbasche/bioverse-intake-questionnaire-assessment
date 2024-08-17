@@ -5,6 +5,7 @@ import QuestionsList from "@/app/questionnaires/[questionnaireName]/QuestionsLis
 
 export default function IntakeForm() {
     const params = useParams();
+    // @ts-ignore
     const formattedName = params.questionnaireName?.charAt(0).toUpperCase() + params.questionnaireName.slice(1);
 
     return (
