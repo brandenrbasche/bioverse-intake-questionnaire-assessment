@@ -8,7 +8,7 @@ export interface QuestionProps {
     question: object;
     questionNumber: number;
     questionId: number;
-    handleChange: (response: UserResponse) => void;
+    handleFormChange: (response: UserResponse) => void;
 }
 
 export interface McqProps {

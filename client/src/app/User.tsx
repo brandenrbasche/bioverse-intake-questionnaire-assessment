@@ -7,6 +7,7 @@ export const User = async () => {
     // @ts-ignore
     const session = await getServerSession(authOptions);
     const userName = session?.user?.name;
+    // @ts-ignore
     const isAdmin = session?.user?.user_type === "admin";
 
     return (
