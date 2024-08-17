@@ -40,7 +40,7 @@ const Questions = ({ name }: Props) => {
         }
 
         fetchQuestions();
-    }, []);
+    }, [name]);
 
     /**
      * @param response
