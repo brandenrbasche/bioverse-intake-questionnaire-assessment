@@ -4,6 +4,7 @@ import {LogoutButton} from "@/app/auth";
 import Link from "next/link";
 
 export const User = async () => {
+    // @ts-ignore
     const session = await getServerSession(authOptions);
     const userName = session?.user?.name;
     const isAdmin = session?.user?.user_type === "admin";
