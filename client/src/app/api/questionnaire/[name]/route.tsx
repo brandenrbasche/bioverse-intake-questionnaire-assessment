@@ -14,6 +14,7 @@ export async function GET(req: NextRequest, res: NextResponse, ) {
         const name = url.pathname.split("/").pop()?.toLowerCase();
         console.log('PATHNAME: ', name)
         await getQuestionnaireIdByName(req, name);
+        // @ts-ignore
         const questionnaireId = JSON.parse(req.headers.get('questionnaireId')).id;
 
         const questions = await prisma.questionnaire_junction.findMany({
