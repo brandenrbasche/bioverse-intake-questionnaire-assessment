@@ -8,9 +8,12 @@ import { getQuestionnaireIdByName } from "./middleware";
  * @param res
  * @constructor
  */
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest, res: NextResponse, ) {
     try {
-        await getQuestionnaireIdByName(req, 'semaglutide');
+        const url = new URL(req.url);
+        const name = url.pathname.split("/").pop()?.toLowerCase();
+        console.log('PATHNAME: ', name)
+        await getQuestionnaireIdByName(req, name);
         const questionnaireId = JSON.parse(req.headers.get('questionnaireId')).id;
 
         const questions = await prisma.questionnaire_junction.findMany({
