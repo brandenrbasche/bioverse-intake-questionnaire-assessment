@@ -36,7 +36,7 @@ const MultipleChoice = ({ options, handleFormChange }: McqProps) => {
         <div>
             {
                 options.map((option, index) => (
-                    <div>
+                    <div key={index}>
                         <input
                             onChange={(e) => updateMcqResponse(e.target.value, e.target.checked)}
                             type='checkbox'
