@@ -65,7 +65,7 @@ const Questions = ({ name }: Props) => {
             <form onSubmit={handleSubmit}>
                 {
                     (questionList !== undefined) && (questionList.map((question, index) => (
-                        <div className='mb-3'>
+                        <div key={index} className='mb-3'>
                             <Question
                                 handleFormChange={handleFormChange}
                                 questionId={question.questionnaire_questions.id}
