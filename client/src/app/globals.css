@@ -8,7 +8,7 @@
   }
 
   h3 {
-    @apply text-lg mb-3;
+    @apply text-lg mb-1;
   }
 
   button {

@@ -44,7 +44,7 @@ const MultipleChoice = ({ options, handleFormChange }: McqProps) => {
                             name={option}
                             value={option}
                         />
-                        <label htmlFor={option}>{option}</label>
+                        <label key={index} htmlFor={option}>{option}</label>
                     </div>
                 ))
             }

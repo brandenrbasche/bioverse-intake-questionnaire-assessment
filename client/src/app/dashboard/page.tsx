@@ -11,7 +11,7 @@ export default async function Dashboard() {
     if (isAdmin) {
         console.log('User is an admin.');
         return (
-            <p>admin panel works!</p>
+            <h1 className='mt-4'>Admin Dashboard</h1>
         )
     } else {
         console.log('User is not an admin. Redirecting to intake selection page.');
