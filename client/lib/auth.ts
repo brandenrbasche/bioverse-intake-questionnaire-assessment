@@ -19,7 +19,7 @@ export const authOptions = {
             },
             async authorize(credentials) {
                 if (!credentials?.email || !credentials.password) {
-                    return null; // this tells Auth.js that there was in INVALID credentials set (the credentials simply weren't correct)
+                    return null; // this tells Auth.js there was in INVALID credentials set (the credentials weren't correct)
                 }
 
                 const user = await prisma.users.findUnique({
