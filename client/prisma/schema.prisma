@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model questionnaire_junction {
+  id                           Int                           @id @default(autoincrement())
+  question_id                  Int?
+  questionnaire_id             Int?
+  priority                     Int?
+  questionnaire_questions      questionnaire_questions?      @relation(fields: [question_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  questionnaire_questionnaires questionnaire_questionnaires? @relation(fields: [questionnaire_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model questionnaire_questionnaires {
+  id                     Int                      @id @default(autoincrement())
+  name                   String?                  @unique @db.VarChar
+  questionnaire_junction questionnaire_junction[]
+  user_responses         user_responses[]
+}
+
+model questionnaire_questions {
+  id                     Int                      @id @default(autoincrement())
+  question               Json?
+  questionnaire_junction questionnaire_junction[]
+  user_responses         user_responses[]
+}
+
+model users {
+  id             Int              @id @unique @default(autoincrement())
+  name           String           @db.VarChar
+  password       String           @db.VarChar
+  user_type      String           @default("user") @db.VarChar(10)
+  email          String           @unique @db.VarChar
+  user_responses user_responses[]
+}
+
+model user_responses {
+  id                           Int                          @id @unique @default(autoincrement())
+  users                        users                        @relation(fields: [user_id], references: [id])
+  user_id                      Int
+  questionnaire_questionnaires questionnaire_questionnaires @relation(fields: [questionnaire_id], references: [id])
+  questionnaire_id             Int
+  response                     Json
+  created_at                   DateTime                     @default(now())
+}
