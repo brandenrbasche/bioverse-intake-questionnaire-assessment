@@ -47,4 +47,6 @@ model user_responses {
   questionnaire_id             Int
   response                     Json
   created_at                   DateTime                     @default(now())
+  questionnaire_questions      questionnaire_questions?     @relation(fields: [questionnaire_questionsId], references: [id])
+  questionnaire_questionsId    Int?
 }
