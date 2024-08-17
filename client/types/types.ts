@@ -6,7 +6,7 @@ export type UserResponse = {
 
 export interface QuestionProps {
     question: any;
-    questionNumber: number;
+    questionNumber: any;
     questionId: number;
     handleFormChange: (response: any) => void;
 }
