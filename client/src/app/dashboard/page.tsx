@@ -3,7 +3,9 @@ import { authOptions } from "../../../lib/auth";
 import { redirect } from "next/navigation";
 
 export default async function Dashboard() {
+    // @ts-ignore
     const session = await getServerSession(authOptions);
+    // @ts-ignore
     const isAdmin = session?.user.user_type === 'admin';
 
     console.log('logging active session: ', session?.user);
