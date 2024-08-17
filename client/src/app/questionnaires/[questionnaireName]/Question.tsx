@@ -1,28 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 type Props = {
-    type: 'mcq' | 'input';
     question: object;
+    questionNumber: number;
+    questionId: number;
 }
 
-const Question = ({ type, question }: Props) => {
-    console.log('logging type: ', type)
-    if (type === 'mcq') {
-        return <MultipleChoice />
-    } else {
-        return <Input />
-    }
+const Question = ({ question, questionNumber, questionId }: Props) => {
+    return (
+        <div>
+            <h3><span className='font-medium'>{questionNumber}.</span> {question.question}</h3>
+            {
+                question.type === 'mcq'
+                    ? <MultipleChoice questionNumber={questionNumber} question={question.question} options={question.options} />
+                    : <TextInput questionId={questionId} />
+            }
+        </div>
+    )
 };
 
-const MultipleChoice = () => {
+/**
+ * Multiple Choice question component:
+ */
+type McqProps = {
+    options: string[];
+}
+const MultipleChoice = ({ options }: McqProps) => {
     return (
-        <p>multiple choice</p>
+        <div>
+            {
+                options.map((option, index) => (
+                    <div>
+                        <input type='checkbox' key={index} name={option}/>
+                        <label htmlFor={option}>{option}</label>
+                    </div>
+                ))
+            }
+        </div>
     )
 }
 
-const Input = () => {
+/**
+ * Text input question component:
+ */
+type TextInputProps = {
+    questionId: number;
+}
+const TextInput = ({ questionId }: TextInputProps) => {
     return (
-        <p>input</p>
+        <textarea required id={questionId.toString()} />
     )
 }
 
