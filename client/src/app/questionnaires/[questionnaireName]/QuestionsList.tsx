@@ -54,7 +54,7 @@ const Questions = ({ name }: Props) => {
     const handleSubmit = (e: Event, userResponses: UserResponse) => {
         e.preventDefault();
         console.log('Would normally send email containing user responses and POST responses to user_responses db table.');
-        alert('Are you sure you want to submit? Answers cannot be undone after submission.')
+        alert('Are you sure you want to submit? Answers cannot be edited after submission.')
         router.replace('/')
     }
 
