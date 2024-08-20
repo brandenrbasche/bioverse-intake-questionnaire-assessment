@@ -31,7 +31,6 @@ const MultipleChoice = ({ options, handleFormChange }: McqProps) => {
             i !== -1 && mcqResponse.splice(i, 1);
         }
 
-        console.log('current response: ', mcqResponse);
         handleFormChange(mcqResponse);
     }
 
@@ -60,7 +59,6 @@ const MultipleChoice = ({ options, handleFormChange }: McqProps) => {
  */
 const TextInput = ({ questionId, handleFormChange }: TextInputProps) => {
     const handleTextInput = (response: string) => {
-        console.log('logging response from text input: ', response);
         handleFormChange(response);
     }
     return (
