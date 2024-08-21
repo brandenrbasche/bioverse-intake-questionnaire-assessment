@@ -13,7 +13,10 @@ export default async function Dashboard() {
     if (isAdmin) {
         console.log('User is an admin.');
         return (
-            <h1 className='mt-4'>Admin Dashboard</h1>
+            <>
+                <h1 className='mt-4'>Admin Dashboard</h1>
+                <p className='italic'>Display user responses and allow admins to explore results in detail.</p>
+            </>
         )
     } else {
         console.log('User is not an admin. Redirecting to intake selection page.');
